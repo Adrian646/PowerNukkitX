@@ -160,18 +160,8 @@ public class CameraCommand extends VanillaCommand {
     }
 
     private NamedDefinition asDefinition(CameraPreset preset) {
-        final String identifier = preset.getName();
-        return new NamedDefinition() {
-            @Override
-            public String getIdentifier() {
-                return identifier;
-            }
-
-            @Override
-            public int getRuntimeId() {
-                return 0;
-            }
-        };
+        var definitions = DefaultCameraPresets.getDefinitionRegistry();
+        return definitions.getDefinition(definitions.getRuntimeIdByName(preset.getName()));
     }
 
     @Override

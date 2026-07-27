@@ -27,7 +27,6 @@ import org.cloudburstmc.protocol.common.DefinitionRegistry;
 import org.cloudburstmc.protocol.common.SimpleDefinitionRegistry;
 import org.cloudburstmc.protocol.common.util.OptionalBoolean;
 import org.jetbrains.annotations.Nullable;
-import org.powernukkitx.utils.TextFormat;
 import org.powernukkitx.Player;
 import org.powernukkitx.PlayerHandle;
 import org.powernukkitx.Server;
@@ -257,6 +256,7 @@ public class PlayerSessionHolder {
 
         final CameraPresetsPacket cameraPresetsPacket = new CameraPresetsPacket();
         cameraPresetsPacket.getCameraPresets().addAll(DefaultCameraPresets.getAll());
+        this.session.getPeer().getCodecHelper().setCameraPresetDefinitions(DefaultCameraPresets.getDefinitionRegistry());
         this.session.sendPacketImmediately(cameraPresetsPacket);
 
         final CameraAimAssistPresetsPacket cameraAimAssistPresetsPacket = new CameraAimAssistPresetsPacket();
